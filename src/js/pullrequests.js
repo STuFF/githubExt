@@ -70,7 +70,7 @@ function createExtButtons() {
 
     $('#extensions').remove();
 
-    $buttons = $(html).insertAfter($('.pr-toolbar'));
+    $buttons = $(html).insertAfter($('.pr-toolbar').first());
 
     $buttons
         .on('click', '.js-ext-filter', function (e) {
