@@ -54,7 +54,7 @@ function createExtButtons() {
         $buttons,
         html = '';
 
-    html += '<div class=""><div id="extensions" class="btn-group">';
+    html += '<div class=""><div id="extensions" class="btn-group clearfix">';
 
     ext.forEach(function (e) {
         var ee = e;
@@ -63,7 +63,7 @@ function createExtButtons() {
         } else {
             ee = '.' + ee;
         }
-        html += `<a data-ext='${e}' class='btn btn-sm  js-ext-filter  selected' href='#'>${ee} (${buttonsConfig[e]})</a>`;
+        html += `<a data-ext='${e}' class='btn btn-sm BtnGroup-item js-ext-filter  selected' href='#'>${ee} (${buttonsConfig[e]})</a>`;
     });
 
     html += '</div></div>';
