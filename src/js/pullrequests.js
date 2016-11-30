@@ -92,10 +92,12 @@ function filterFiles(fileTypes) {
 }
 
 function check_ui_is_ready() {
-    if ($('#files').length === 0) {
-        wait_a_bit();
-    } else {
+    var totalFileExpected = parseInt($('.js-select-button strong').eq(1).html());
+    var totalFileLoaded = $('.file-header').length;
+    if (totalFileExpected === totalFileLoaded) {
         activateExtUi();
+    } else {
+        wait_a_bit();
     }
 }
 
