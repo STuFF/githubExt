@@ -2,16 +2,17 @@ function getExtFromPath(path) {
     return path.substr((~-path.lastIndexOf('.') >>> 0) + 2);
 }
 
-var _files = null;
+let _files = null;
+
 function getAllFiles() {
     if (_files) {
         return _files;
     } else {
-        var files = [];
+        const files = [];
         $('.file-header').each(function (n, header) {
-            var $header = $(header);
-            var path = $header.data('path');
-            var e = getExtFromPath(path);
+            const $header = $(header);
+            const path = $header.data('path');
+            const e = getExtFromPath(path);
 
             $header.data('ext', e);
             files.push(path);
@@ -23,11 +24,11 @@ function getAllFiles() {
 }
 
 function getAllExtensions() {
-    var files = getAllFiles(),
-        ext = {};
+    const files = getAllFiles();
+    const ext = {};
 
     files.forEach(function (file) {
-        var e = getExtFromPath(file);
+        const e = getExtFromPath(file);
         if (!ext[e]) {
             ext[e] = 1;
         } else {
@@ -39,7 +40,7 @@ function getAllExtensions() {
 }
 
 function getSelectedExt() {
-    var ext = [];
+    const ext = [];
 
     $('#extensions a.selected').each(function (n, a) {
         ext.push($(a).data('ext'));
@@ -49,15 +50,15 @@ function getSelectedExt() {
 }
 
 function createExtButtons() {
-    var buttonsConfig = getAllExtensions(),
-        ext = Object.keys(buttonsConfig).sort(),
-        $buttons,
-        html = '';
+    const buttonsConfig = getAllExtensions();
+    const ext = Object.keys(buttonsConfig).sort();
+    let $buttons;
+    let html = '';
 
     html += '<div class=""><div id="extensions" class="btn-group clearfix">';
 
     ext.forEach(function (e) {
-        var ee = e;
+        let ee = e;
         if (!ee) {
             ee = 'none';
         } else {
@@ -83,8 +84,8 @@ function createExtButtons() {
 
 function filterFiles(fileTypes) {
     $('.file-header').each(function (n, header) {
-        var $header = $(header),
-            ext = $header.data('ext');
+        const $header = $(header);
+        const ext = $header.data('ext');
 
         $header.parent('.file').toggle(fileTypes.indexOf(ext) !== -1);
 
@@ -92,8 +93,9 @@ function filterFiles(fileTypes) {
 }
 
 function check_ui_is_ready() {
-    var totalFileExpected = parseInt($('.js-select-button strong').eq(1).html());
-    var totalFileLoaded = $('.file-header').length;
+    const totalFileExpected = parseInt($('#files_tab_counter').html());
+    const totalFileLoaded = $('.file-header').length;
+    
     if (totalFileExpected === totalFileLoaded) {
         activateExtUi();
     } else {
